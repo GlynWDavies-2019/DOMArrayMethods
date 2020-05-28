@@ -17,8 +17,8 @@ let data = [];
 // Initialization
 
 getRandomUser();
-// getRandomUser();
-// getRandomUser();
+getRandomUser();
+getRandomUser();
 
 // Functions 
 
@@ -53,13 +53,29 @@ function formatMoney(number) {
     return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); 
 }
 
-function doubleMoney() {}
+function doubleMoney() {
+    data = data.map(user => {
+        return {...user, money: user.money * 2};
+    });
+    updateDOM();
+}
 
-function sortByRichest() {}
+function sortByRichest() {
+    data.sort((a,b) => b.money - a.money);
+    updateDOM();
+}
 
-function showMillionaires() {}
+function showMillionaires() {
+    data = data.filter(user => user.money > 1000000);
+    updateDOM();
+}
 
-function calculateWealth() {}
+function calculateWealth() {
+    const wealth = data.reduce((total,user) => (total += user.money), 0);
+    const wealthElement = document.createElement('div');
+    wealthElement.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(wealth)}</strong></h3>`;
+    main.appendChild(wealthElement);
+}
 
 // Event Listeners
 
