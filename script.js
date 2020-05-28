@@ -12,9 +12,9 @@ const sortButton = document.getElementById('sort');
 
 const calculateWealthButton = document.getElementById('calculate-wealth');
 
-let data = [];
-
 // Initialization
+
+let data = [];
 
 getRandomUser();
 getRandomUser();
@@ -22,9 +22,15 @@ getRandomUser();
 
 // Functions 
 
+// Fetch random user and add money
+
+// With async-await we don't need the .then clauses
+
+// Anything that returns a promise needs await in front of it
+
 async function getRandomUser() {
-    const response = await fetch('https://randomuser.me/api');
-    const data = await response.json();
+    const response = await fetch('https://randomuser.me/api');  // Returns a promise
+    const data = await response.json();                         // Returns a promise
     const user = data.results[0];   
     const newUser = {
         name: `${user.name.first} ${user.name.last}`,
